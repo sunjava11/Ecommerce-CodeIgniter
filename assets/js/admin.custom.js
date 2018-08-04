@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	
-var baseURL ="http://localhost:8080/shopnow/index.php/";
+var baseURL ="http://example.com";
 	
 	$("#product_add").validate(
 	{
