@@ -1,0 +1,138 @@
+footer h4{
+	text-align:left;
+}
+
+.error {
+      color: red;      
+   }
+   
+.img_100_100{
+	width:100px;
+	height:100px
+}
+
+.img_65_65{
+	width:65px;
+	height:65px
+}  
+
+.galleryimage-edit{	
+	
+}
+.galleryimage-edit img{
+	margin-top:10px;
+	margin-left:5px
+}
+.galleryimage-edit a:hover{	
+	background:rgba(0,0,0,0.8);
+}
+
+
+.galleryimage-edit a{
+	
+	color:#fafafa;
+	background:rgba(0,0,0,0.5);
+	border-radius:10px;
+	padding:0 5px;
+	
+	position:absolute;
+}
+
+.pagination a{
+	
+	border:1px solid #eee;
+	padding:7px;
+	margin:1px;
+}
+h1.product-name{
+	font-weight:normal !important;
+	font-size:22px !important;
+	
+}
+.timer h3{margin:0;padding:0}
+.print h1,h2,h3,h4{margin:0;padding:0;text-align:center}
+.mobile-footer-menu li{border-left:1px solid #ccc;border-right:1px solid #fff}
+.product-view{margin-top:20px !important;}
+
+.product-price{color:#000 !important;font-size:18px !important}
+.availability .font-weight-semibold{color:#000 !important}
+.delivery-time{float:left;font-size:12px}
+.delivery-return{float:left;font-size:12px;margin-left:20px}
+.delivery-charges{color:#840560;font-weight:bold}
+
+.list-contact li{float:left;clear:both;}
+.list-contact div{padding:0px 0 !important;margin-left:35px !important}
+.list-contact i{border-radius:20px !important;
+padding:0px !important;
+width:20px !important;
+height:20px !important;
+line-height:20px !important ;
+font-size:12px !important;
+ }
+ 
+ #header .header-nav-main nav > ul > li > a
+ {
+	 font-weight:normal !important;
+ }
+.section-contact-area h2
+{
+	font-size:16px;
+	color:#000;
+	font-weight:bold;
+	
+} 
+
+#header .header-container{padding-top:0px !important;padding-bottom:0px !important}
+.home-slider-area{padding-top:10px !important}
+#header .header-search form{width:550px !important}
+#header .header-search .header-search-wrapper select{border:1px solid #eee !important;border-top:0 !important;border-bottom:0 !important}
+.product .product-name{height:40px !important}
+.slider-title .inline-title{padding-left:20px !important}
+.homepage-bar{margin-top:-15px}
+.home-slider-area{padding:0 !important}
+.product .product-image-area{text-align:center !important}
+
+@media only screen and (max-width: 768px) {
+    #header .header-container{
+		padding:0px !important;
+	}
+	#header .header-body{
+		min-height:0px !important
+	}
+	.product-details-box .product-name
+	{
+		font-family:arial !important;
+		font-weight:bold !important;
+		color:#000 !important;
+		font-size:22px !important;
+	}
+	.product-details-box .product-detail-info .product-price-box .old-price
+	{
+		font-size:14px !important;
+		margin-left:10px !important;
+	}
+	.product-detail-info .product-price-box{margin:0 !important;
+		float:left !important;
+	}
+	.product-detail-info .availability{
+		float:right !important;	
+	}
+	.product-detail-info .availability .lblAvailablity{
+		display:none !important
+	}
+	.product-details-box .product-actions
+	{
+		text-align:center !important;
+	}
+	.product-details-box .product-actions .addtocart{
+		
+	}
+	.delivery-return{float:right !important;margin:0px !important;font-size:10px;}
+	.delivery-time{font-size:10px}
+	.product-essential{margin:0 !important;}
+	.delivery-charges{font-size:12px;color:#90cc0c;}
+	#myCounter{margin-top:10px !important; margin-bottom:10px !important;}
+	.cart-area{display:block !important;}
+	.tabs.product-tabs .tab-content{padding:0px !important}
+	.tab-content{padding:5px !important}
+}

@@ -1,0 +1,76 @@
+.counter-group {
+  
+  display: inline-block;
+}
+.counter-group:before,
+.counter-group:after {
+  content: " ";
+  display: table;
+}
+.counter-group:after {
+  clear: both;
+}
+.counter-block {
+  float: left;
+  margin-right: 10px;  
+  border-radius:5px;
+}
+.counter-block .counter {
+  position: relative;  
+  width: 40px;
+  height: 45px;
+  overflow: hidden;
+  
+}
+.counter-block .counter .number {
+  font-weight:bold;
+  background-color: #fff;
+  color: #840560;
+  position: absolute;
+  font-size: 18px;  
+  
+}
+.counter-block .counter .number.tens {
+  left: 20%;
+}
+.counter-block .counter .number.units {
+  left: 50%;
+}
+.counter-block .counter .number.hundreds {
+  display: none;
+}
+.counter-block .counter .number.show {
+  top: 0;
+  z-index: 2;
+  
+}
+.counter-block .counter .number.hidden-down {
+  top: 100%;
+}
+.counter-block .counter .number.hidden-up {
+  top: -100%;
+  z-index: 100;
+}
+.counter-block .counter.with-hundreds {
+  width: 300px;
+}
+.counter-block .counter.with-hundreds .number {
+  width: 30.66%;
+}
+.counter-block .counter.with-hundreds .number.tens {
+  left: 33.33%;
+}
+.counter-block .counter.with-hundreds .number.units {
+  left: 66.66%;
+}
+.counter-block .counter.with-hundreds .number.hundreds {
+  display: block;
+  left: 0;
+}
+.counter-block .counter-caption {
+  font-size: 10px;
+  color:#222;
+}
+
+.counter{border:1px solid #840560;border-radius:5px;}
+.counter-block .days .hundreds{display:none !important}
