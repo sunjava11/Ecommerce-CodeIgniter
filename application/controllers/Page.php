@@ -19,7 +19,7 @@ class Page extends CI_Controller {
         $config['total_rows'] = $this->Product->get_all_product_count();		
 		$config['per_page']=20;
 		$config['page_query_string'] = true;
-		$config['attributes'] = array('class' => 'pagination__next');
+		$config['attributes'] = array('class' => 'nextpage');
 		
         $this->pagination->initialize($config);
 		

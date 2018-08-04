@@ -5,7 +5,24 @@ $(document).ready(function(){
 	});
 	
 	$("#checkoutForm").validate();
-	
+    
+    
+    $(".infinite-scroll").infiniteScroll(
+        {
+              path: function() {
+            return '/page/activedeal?&per_page=' + ( ( this.loadCount + 1 ) * 20 );                        
+        },
+        append: '.post'
+        });
+
+    $(".product-gallery-item").click(function(){
+		var imgurl = $(this).data("image");		
+		$(".main-product-gallery-image").fadeOut(500,function(){
+			$(this).attr('src',imgurl).fadeIn(500);
+		});
+		
+	});
+
 	$(".chosen-select").chosen();
 	
 	$('#saleCountdown').mbComingsoon({
