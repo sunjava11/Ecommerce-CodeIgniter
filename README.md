@@ -9,4 +9,5 @@
 - This CMS uses Porto Theme for Client Uses and Admint LTE for Admin Use
 - PHP Excel 
 - Simple HTML DOM
+- Infinite Scroll
     
