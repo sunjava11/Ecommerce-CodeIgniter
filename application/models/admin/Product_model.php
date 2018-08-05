@@ -31,9 +31,30 @@ class Product_model extends CI_Model
 	
 	
 	
-	function get_all_product_count2()
+	function get_all_product_count2($fitler="")
     {
-        return $this->db->query("select count(*) as totalrows from product where isdelete=0 and isdirectaccess=0")->row()->totalrows;
+		if(isset($fitler))
+		{
+				if($fitler=="new-thankyou-page")
+				{
+					$this->db->where("isnewthankpage",1);
+				}
+				else if($fitler=="default-thankyou-page")
+				{
+					$this->db->where("isnewthankpage",0);
+				}
+				else if($fitler=="direct-access-product")
+				{
+					$this->db->where("isdirectaccess",1);
+				}
+		}
+
+		
+		$this->db->where("isdelete",0);
+		$this->db->where("isdirectaccess",0);
+		return $this->db->count_all_results("product");
+
+        //return $this->db->query("select count(*) as totalrows from product where ")->row()->totalrows;
     }
 	
 	function get_all_product_count_expire()
@@ -50,8 +71,25 @@ class Product_model extends CI_Model
         $this->db->order_by('ProductId', 'desc');
         if(isset($params) && !empty($params))
         {
-            $this->db->limit($params['limit'], $params['offset']);
+			$this->db->limit($params['limit'], $params['offset']);
+			
+			if(isset($params["filter"]))
+			{
+				if($params["filter"]=="new-thankyou-page")
+				{
+					$this->db->where("isnewthankpage",1);
+				}
+				else if($params["filter"]=="default-thankyou-page")
+				{
+					$this->db->where("isnewthankpage",0);
+				}
+				else if($params["filter"]=="direct-access-product")
+				{
+					$this->db->where("isdirectaccess",1);
+				}
+			}
         }
+		
 		
 		$result =$this->db->get_where('product',array('isdelete'=>0))->result_array();
 		$resultArray = array();

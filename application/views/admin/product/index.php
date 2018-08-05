@@ -2,14 +2,43 @@
     <div class="col-md-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Products</h3>
+                <h3 class="box-title">Products 
+				</h3>
+				<div class="small">
+				
+				<?php
+				 if(isset($_GET["filter"]))
+				 {
+					echo "(";
+					echo $_GET["filter"];
+					echo ' <a href="'.site_url('admin/product/index').'" title="clear"><i class="fa fa-times"></i></a>)';
+				 }
+				  ?>
+				</div>
             	<div class="box-tools">
                     <a href="<?php echo site_url('admin/product/add'); ?>" class="btn btn-success btn-sm">Add</a> 
 					<a href="<?php echo site_url('admin/product/expired_deals'); ?>" class="btn btn-info btn-sm">Expired Deals</a> 
                 </div>
             </div>
             <div class="box-body">
-                <table class="table table-striped">
+                <div class="">
+				<?php echo form_open("admin/product/index",array("class"=>"form form-inline","method"=>"get")) ?>
+					<div class="form-group">						
+						<select name="filter" required class="form-control">
+							<option value="">select</option>
+							<option value="default-thankyou-page">Default Thankyou Page</option>
+							<option value="new-thankyou-page">New Thankyou Page</option>
+							<option value="direct-access-product">Direct Access Product</option>
+						</select>
+					</div>
+					<div class="form-group">
+					<input type="submit" class="btn btn-primary" value="Filter" />
+					</div>
+				<?php echo form_close();?>
+				</div>
+
+				
+				<table class="table table-striped">
                     <tr>					
 						<th>Sr #</th>
 						<th>Product Name</th>
