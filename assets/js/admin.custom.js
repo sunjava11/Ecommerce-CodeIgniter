@@ -1,11 +1,23 @@
 $(document).ready(function(){
 	
-var baseURL ="http://example.com";
+var baseURL ="http://www.example.com/index.php/";
 	
 	$("#product_add").validate(
 	{
 		ignore:".ignore"
 	});
+	
+	$("#adminOrderAddFormId").validate();	
+	
+ $('#order_product_copy').click(function() {
+	var $temp = $("<input>");
+    $("body").append($temp);	
+    $temp.val($("#ProductId option:selected").text()).focus().select();	
+    document.execCommand("copy");
+    $temp.remove();
+	
+	alert("copied");
+ });
 	
 	
 	$("#checkAllOrders").click(function(){
@@ -99,19 +111,34 @@ var baseURL ="http://example.com";
 			});
 			$("#orderIdsToMove").val(ids);			
 		});
+		
+		
+		$("#printOrders").submit(function(){
+			var ids;
+			$(".chkMoveOrder").each(function(index){
+				if($(this).is(":checked"))
+				{
+					var id=$(this).prop("id");
+					ids=ids+","+id;					
+				}
+			});
+			$("#orderIdsToPrint").val(ids);			
+		});
 	
 	
+		$(".chosen-select").chosen();
 	
 	
 	var selectedCity = $('#SelectedCityOrderEdit').val();
 	
 		$('#CityOrderEdit option[value='+selectedCity+']').prop('selected',true);
+		$("#CityOrderEdit").trigger("chosen:updated");
 	
 	$('a[data-confirm]').click(function (ev) {
         var href = $(this).attr('href');
 
         if (!$('#dataConfirmModal').length) {
-            $('body').append('<div id="dataConfirmModal" class="modal modal-danger" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true"><span aria-hidden="true">×</span></button><h3 id="dataConfirmLabel">Please Confirm</h3></div><div class="modal-body"></div><div class="modal-footer"><button class="btn btn-outline pull-left" data-dismiss="modal" aria-hidden="true">Cancel</button><a class="btn btn-outline" id="dataConfirmOK">OK</a></div></div></div></div>');
+            $('body').append('<div id="dataConfirmModal" class="modal modal-danger" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true"><span aria-hidden="true">ï¿½</span></button><h3 id="dataConfirmLabel">Please Confirm</h3></div><div class="modal-body"></div><div class="modal-footer"><button class="btn btn-outline pull-left" data-dismiss="modal" aria-hidden="true">Cancel</button><a class="btn btn-outline" id="dataConfirmOK">OK</a></div></div></div></div>');
         }
         $('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
         $('#dataConfirmOK').attr('href', href);

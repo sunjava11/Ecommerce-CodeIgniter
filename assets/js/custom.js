@@ -9,11 +9,13 @@ $(document).ready(function(){
     
     $(".infinite-scroll").infiniteScroll(
         {
-              path: function() {
-            return '/page/activedeal?&per_page=' + ( ( this.loadCount + 1 ) * 20 );                        
-        },
-        append: '.post'
-        });
+            
+        path: '.next a',
+        append: '.post',
+        status: '.page-load-status',
+        hideNav: '.pagination'
+        }    
+    );
 
     $(".product-gallery-item").click(function(){
 		var imgurl = $(this).data("image");		

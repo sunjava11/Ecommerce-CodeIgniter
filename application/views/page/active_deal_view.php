@@ -15,8 +15,12 @@
 					<?php endforeach;?>
 					<?php endif;?>
 					
-					
+
 					<div class="pull-right pagination">
-                    <?php echo $this->pagination->create_links(); ?>                    
+                    <?php echo $this->pagination->create_links()  ?>                    
                 </div>
+				
+				<div class="page-load-status">
+  <p class="infinite-scroll-request" style="font-size:54px;text-align:center">Loading...</p>  
+</div>
 				</div>

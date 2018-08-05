@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Page extends CI_Controller {
 
 	
-	public function activedeal()
+	public function activedeal($offset = 0)
 	{
 		$data["pagetitle"]="Active Deals";
 		$this->load->model("admin/Product_model","Product");		
@@ -13,13 +13,40 @@ class Page extends CI_Controller {
 		
         $this->load->library('pagination');
 		$params['limit'] = 20; 
-        $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
-                        
-		$config['base_url'] = base_url()."/index.php/page/activedeal?";
+		//$params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
+		$params['offset'] = $offset*$params['limit'];
+						
+		//echo $params['offset'];
+
+		$config['base_url'] = base_url()."/index.php/page/activedeal";
         $config['total_rows'] = $this->Product->get_all_product_count();		
 		$config['per_page']=20;
-		$config['page_query_string'] = true;
-		$config['attributes'] = array('class' => 'nextpage');
+		$config['page_query_string'] = false;
+		$config['display_pages'] = TRUE;
+		$config['num_links'] = 30;
+		$config['uri_segment'] = 3;
+		$config['use_page_numbers'] = TRUE;	
+		
+		// $config['next_tag_open']='<div class="nextpage">';
+		// $config['next_tag_close']='</div>';
+
+		//various pagination configuration
+        $config['full_tag_open'] = '<div class="pagination">';
+        $config['full_tag_close'] = '</div>';
+        $config['first_tag_open'] = '<span class="first">';
+        $config['first_tag_close'] = '</span>';
+        $config['first_link'] = '';
+        $config['last_tag_open'] = '<span class="last">';
+        $config['last_tag_close'] = '</span>';
+        $config['last_link'] = '';
+        $config['prev_tag_open'] = '<span class="prev">';
+        $config['prev_tag_close'] = '</span>';
+        $config['prev_link'] = '';
+        $config['next_tag_open'] = '<span class="next">';
+        $config['next_tag_close'] = '</span>';
+        $config['next_link'] = '';
+        $config['cur_tag_open'] = '<span class="current">';
+        $config['cur_tag_close'] = '</span>';
 		
         $this->pagination->initialize($config);
 		
