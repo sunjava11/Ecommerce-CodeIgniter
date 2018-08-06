@@ -115,7 +115,11 @@
                     <tr>
 						<td><input type="checkbox" id="<?php echo $o['OrderId']; ?>" class="chkMoveOrder"> </td>
 						<td><a href="<?php echo site_url('admin/order/edit/'.$o['OrderId']); ?>" >
-						<?php echo $o['OrderId']; ?></a></td>
+						<?php echo $o['OrderId']; ?></a>
+						<?php if ($o['isnewthankpage']==1):?>
+						<label class="label label-info">new thankyou page</label>
+						<?php endif;?>
+						</td>
 						<td><?php echo date("d-m-y g:i A",strtotime($o['OrderDate'])); ?></td>
 						<td><?php echo $o['OrderStatus']; ?>
 						<a href="javascript:;" id="<?=$o["OrderId"]?>" class="ordernotes-form" title="Add Order Comments">

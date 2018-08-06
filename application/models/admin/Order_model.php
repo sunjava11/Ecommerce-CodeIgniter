@@ -88,7 +88,7 @@ order by o.OrderId desc
 		if($params['orderstatusid']=="all")
 		{
 			return $this->db->query("select o.OrderId,os.OrderStatus,o.ProductVariation,o.OrderNotes,o.CreatedDate as OrderDate,p.ProductName,concat(c.FirstName,' ',c.LastName) as CustomerName, (o.CODAmount+o.ShippingCost) as TotalCOD,
-		c.Cell1,c.Cell2,c.ShippingAddress,c.City
+		c.Cell1,c.Cell2,c.ShippingAddress,c.City,p.isnewthankpage
 		from orders o 
 		join orderstatus os on o.OrderStatusId = os.OrderStatusId
 		join product p on o.ProductId=p.ProductId
@@ -108,7 +108,7 @@ order by o.OrderId desc
 		
 		
 		return $this->db->query("select o.OrderId,os.OrderStatus,o.ProductVariation,o.OrderNotes,o.CreatedDate as OrderDate,p.ProductName,concat(c.FirstName,' ',c.LastName) as CustomerName, (o.CODAmount+o.ShippingCost) as TotalCOD,
-		c.Cell1,c.Cell2,c.ShippingAddress,c.City
+		c.Cell1,c.Cell2,c.ShippingAddress,c.City,p.isnewthankpage
 		from orders o 
 		join orderstatus os on o.OrderStatusId = os.OrderStatusId
 		join product p on o.ProductId=p.ProductId
@@ -129,7 +129,7 @@ order by o.OrderId desc
 		else if($params['orderstatusid']!="all")
 		{
 			return $this->db->query("select o.OrderId,os.OrderStatus,o.ProductVariation,o.OrderNotes,o.CreatedDate as OrderDate,p.ProductName,concat(c.FirstName,' ',c.LastName) as CustomerName, (o.CODAmount+o.ShippingCost) as TotalCOD,
-		c.Cell1,c.Cell2,c.ShippingAddress,c.City
+		c.Cell1,c.Cell2,c.ShippingAddress,c.City,p.isnewthankpage
 		from orders o 
 		join orderstatus os on o.OrderStatusId = os.OrderStatusId
 		join product p on o.ProductId=p.ProductId
@@ -141,7 +141,7 @@ order by o.OrderId desc
 		}
 		else{
 			return $this->db->query("select o.OrderId,os.OrderStatus,o.ProductVariation,o.OrderNotes,o.CreatedDate as OrderDate,p.ProductName,concat(c.FirstName,' ',c.LastName) as CustomerName, (o.CODAmount+o.ShippingCost) as TotalCOD,
-		c.Cell1,c.Cell2,c.ShippingAddress,c.City
+		c.Cell1,c.Cell2,c.ShippingAddress,c.City,p.isnewthankpage
 		from orders o 
 		join orderstatus os on o.OrderStatusId = os.OrderStatusId
 		join product p on o.ProductId=p.ProductId

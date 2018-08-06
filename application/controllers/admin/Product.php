@@ -26,9 +26,19 @@ class Product extends CI_Controller{
         $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
 
 		$params["filter"]=$this->input->get("filter");
+		$params["search"]=$this->input->get("search");
 		$config['base_url'] = base_url()."/index.php/admin/product/index?";
-        $config['total_rows'] = $this->Product_model->get_all_product_count2($params["filter"]);		
+		$config['total_rows'] = $this->Product_model->get_all_product_count2($params["filter"]);		
+		
+
 		$config['per_page']=RECORDS_PER_PAGE;
+		
+		if($params["search"])
+		{
+			$config["total_rows"]=1000;
+			$config["per_page"]=1000;
+		}
+		
 		$config['page_query_string'] = TRUE;
 		
         $this->pagination->initialize($config);

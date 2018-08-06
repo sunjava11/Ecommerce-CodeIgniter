@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Products 
+                <h3 class="box-title"><a href="<?=site_url('admin/product/index')?>"> All Products</a> 
 				</h3>
 				<div class="small">
 				
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="box-body">
-                <div class="">
+                <div class="pull-left">
 				<?php echo form_open("admin/product/index",array("class"=>"form form-inline","method"=>"get")) ?>
 					<div class="form-group">						
 						<select name="filter" required class="form-control">
@@ -36,6 +36,18 @@
 					</div>
 				<?php echo form_close();?>
 				</div>
+
+				<div class="pull-right">
+				<?php echo form_open("admin/product/index",array("class"=>"form form-inline","method"=>"get")) ?>
+					<div class="form-group">						
+						<input type="text" name="search" value="<?php echo isset($_GET["search"])?$_GET["search"]:"" ?>" required class="form-control" placeholder="search products" />							
+					</div>
+					<div class="form-group">
+					<input type="submit" class="btn btn-primary" value="Search" />
+					</div>
+				<?php echo form_close();?>
+				</div>
+				<div style="clear:both"></div>
 
 				
 				<table class="table table-striped">
@@ -62,13 +74,25 @@
 					?>
 					>
 						<td><?php echo $sr ?></td>
-						<td>
-						<?php if ($p["IsDirectAccess"]==1)
+						<td>						
+						<a href="<?=site_url("Product")?>/preview/<?=$p["ProductId"]?>" target="_blank" title="View Product"><?php echo $p['ProductName']; ?></a>
+						<br />
+						<?php 
+						if ($p["IsDirectAccess"]==1)
 						{
-							echo '<i class="fa fa-eye"  title="Not Visible on Site"></i>';
+							echo '<span class="label label-success">hidden from site</span>';
+						}
+						if ($p["isnewthankpage"]==1)
+						{
+							echo '<span class="label label-info">new thankyou</span>';
+						}
+						if ($p["isnewthankpage"]==0)
+						{
+							echo '<span class="label label-default">default thankyou</span>';
 						}
 						?>
-						<a href="<?=site_url("Product")?>/preview/<?=$p["ProductId"]?>" target="_blank" title="View Product"><?php echo $p['ProductName']; ?></a></td>
+
+						</td>
 						<td>
 						
 						<img src="<?php echo upload_url().get_thumbnail($p['Featured']); ?>" class="img_65_65 thumbnail"></td>

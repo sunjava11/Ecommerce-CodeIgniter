@@ -73,6 +73,11 @@ class Product_model extends CI_Model
         {
 			$this->db->limit($params['limit'], $params['offset']);
 			
+			if(isset($params["search"]))
+			{
+				$this->db->like("productname",$params["search"],"both");
+			}
+
 			if(isset($params["filter"]))
 			{
 				if($params["filter"]=="new-thankyou-page")
