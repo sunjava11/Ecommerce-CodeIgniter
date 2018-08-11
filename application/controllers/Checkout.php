@@ -46,44 +46,56 @@ class Checkout extends CI_Controller {
 	{
 		if(isset($_POST) && count($_POST)>0)
 		{
-			date_default_timezone_set("Asia/Karachi");
-			$createdDate = date("Y-m-d H:i:s");			
-			$this->load->model("admin/Customer_model","Customer");
-			$this->load->model("admin/OrderStatus_model");
+			if(isset($_SESSION["token"]))
+			{
+				if($_SESSION["token"]==$this->input->post("token"))
+				{
+					unset($_SESSION["token"]);
+	
+					date_default_timezone_set("Asia/Karachi");
+				$createdDate = date("Y-m-d H:i:s");			
+				$this->load->model("admin/Customer_model","Customer");
+				$this->load->model("admin/OrderStatus_model");
+				
+				$customerArray = array(
+										"FirstName"=>$this->input->post("FirstName"),
+										"LastName"=>$this->input->post("LastName"),
+										"Cell1"=>$this->input->post("Cell1"),
+										"Cell2"=>$this->input->post("Cell2"),
+										"Email"=>$this->input->post("Email"),
+										"ShippingAddress"=>$this->input->post("ShippingAddress"),
+										"City"=>$this->input->post("City"),
+										"NearMostFamousPlace"=>$this->input->post("NearMostFamousPlace"),
+										"CreatedDate"=>$createdDate
+										);
+										
+										
+										
+				$customerId = $this->Customer->add_customer($customerArray);	
+	
+				$orderArray = array(
+							"ProductId"=>$this->input->post("ProductId"),
+							"CODAmount"=>$this->input->post("CODAmount"),
+							"ShippingCost"=>$this->input->post("ShippingCost"),
+							"CustomerId"=>$customerId,
+							"ProductVariation"=>json_encode($this->input->post("productVariation")),
+							"OrderStatusId"=>$this->OrderStatus_model->get_order_status_processing()->OrderStatusId	,
+	"CreatedDate"=>$createdDate						
+				);
+	
+				
+				$orderId = $this->Order->add_order($orderArray);
+				
 			
-			$customerArray = array(
-									"FirstName"=>$this->input->post("FirstName"),
-									"LastName"=>$this->input->post("LastName"),
-									"Cell1"=>$this->input->post("Cell1"),
-									"Cell2"=>$this->input->post("Cell2"),
-									"Email"=>$this->input->post("Email"),
-									"ShippingAddress"=>$this->input->post("ShippingAddress"),
-									"City"=>$this->input->post("City"),
-									"NearMostFamousPlace"=>$this->input->post("NearMostFamousPlace"),
-									"CreatedDate"=>$createdDate
-									);
-									
-									
-									
-			$customerId = $this->Customer->add_customer($customerArray);	
-
-			$orderArray = array(
-						"ProductId"=>$this->input->post("ProductId"),
-						"CODAmount"=>$this->input->post("CODAmount"),
-						"ShippingCost"=>$this->input->post("ShippingCost"),
-						"CustomerId"=>$customerId,
-						"ProductVariation"=>json_encode($this->input->post("productVariation")),
-						"OrderStatusId"=>$this->OrderStatus_model->get_order_status_processing()->OrderStatusId	,
-"CreatedDate"=>$createdDate						
-			);
-
-			
-			$orderId = $this->Order->add_order($orderArray);
-			
-		
-			
-			redirect("Checkout/ThankYou/?orderId=".$orderId."&customerName=".$customerArray["FirstName"]." ".$customerArray["LastName"]."");
-			
+				$redirectString = "Checkout/ThankYou/?orderId=".$orderId."&customerName=".$customerArray["FirstName"]." ".$customerArray["LastName"]."";
+				$_SESSION["redirect_checkout"]=$redirectString;
+				redirect($redirectString);
+				
+				}
+			}	
+			else{
+				redirect($redirectString);
+			}					
 		}
 		else{
 			$error["heading"]="Something went wrong";

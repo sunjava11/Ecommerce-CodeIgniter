@@ -1,5 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
+<?php
+	$_SESSION["token"]=uniqid();
+?>
 <div class="container">
 				<div class="row">
 					<div class="col-md-9">
@@ -99,7 +102,7 @@
 						<input type="hidden" name="ProductId" value="<?=$ProductId?>" >
 						<input type="hidden" name="CODAmount" value="<?=$ProductSalePrice?>" >
 						<input type="hidden" name="ShippingCost" value="<?=$DeliveryCharges?>">
-						
+						<input type="hidden" name="token" value="<?=$_SESSION["token"]?>" >
 						
 						<input type="submit" value="Place Order" class="btn btn-block btn-success">
 						</div>
