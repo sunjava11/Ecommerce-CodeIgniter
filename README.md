@@ -1,6 +1,7 @@
 # Ecommerce CMS built using Codeigniter V.3
 
 ## Features
+- Lightweight and very fast.
 - Manage Products
 - Manage Orders
 - Reports
